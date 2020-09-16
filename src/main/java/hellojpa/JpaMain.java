@@ -8,13 +8,13 @@ import javax.persistence.Persistence;
 public class JpaMain {
     public static void main(String[] args) {
         // EntityManagerFactory 만드는 순간 database와 연결
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaTest"); // data base connection 생성과 비슷한 역할.
-        EntityManager em = emf.createEntityManager(); // JAVA Collection 처럼 이해하면 쉬움.
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaTest"); // data base connection 생성과 비슷한 역할. web server가 올라오는 시점에 하나만 생성됨(application 전체에서 공유).
+        EntityManager em = emf.createEntityManager(); // JAVA Collection 처럼 이해하면 쉬움. 고객의 요청이 올 때마다 create, close. thread간에 공유 X.
 
         EntityTransaction tx = em.getTransaction(); // transaction 생성
         tx.begin();
 
-        // JPA에서는 꼭 Transaction단위 안에서 이루어져야한다.
+        // JPA에서 모든 데이터 변경은 꼭 Transaction단위 안에서 이루어져야한다.
         try {
             /* insert
             Member member = new Member();
