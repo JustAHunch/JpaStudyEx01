@@ -55,6 +55,6 @@ public class JpaMain {
         } finally {
             em.close();
         }
-        emf.close();
+        emf.close(); // WEB -> WAS가 내려갈때 EntityManagerFactory를 반환해야 함.
     }
 }
