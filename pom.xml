@@ -8,6 +8,7 @@
     <artifactId>ex1-hello-jpa</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- JPA dependencies -->
     <dependencies>
         <!-- JPA Hibernate -->
         <dependency>
