@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -32,9 +33,21 @@ public class JpaMain {
 
             /* update
              * em.persist()를 호출하지 않아도 됨.
-             * JPA를 통해서 entity를 가져오면 JPA가 관리를 한다, transaction을 커밋하는 시점에 변경을 체크해서 update쿼리를 날리기 때문.
+             * JPA를 통해서 entity를 가져오면 JPA가 관리를 한다, transaction을 커밋하는 시점에 변경을 체크해서 update쿼리를 날리기 때문.0
             Member findMember = em.find(Member.class, 1L);
             findMember.setName("HelloJPA");*/
+
+            // JPQL
+            /* select All
+            // Member 객체를 대상으로 쿼리, 대상이 TABLE이 아님.
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    //paging
+                    //.setFirstResult(1)
+                    //.setMaxResults(10)
+                    .getResultList();
+            for (Member member : result) {
+                System.out.println("member.getName() = " + member.getName());
+            }*/
 
             tx.commit();
         } catch (Exception e){
