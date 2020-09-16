@@ -3,17 +3,21 @@
     <!-- data base name -->
     <persistence-unit name="jpaTest">
         <properties>
+            <!-- javax.persistence~ JPA 표준 속성 -->
+            <!-- hibernate~ 하이버네이트 전용 속성 -->
+
             <!-- necessary property -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
             <!--
-                database dialect
+                [DataBase Dialect]
                 1. JPA는 특정 데이터베이스에 종속되지 않는다.
                 2. 각각의 데이터베이스가 제공하는 SQL 문법과 함수는 조금씩 다르다.
-                    가변문자 : mysql-> varchar, oracle->vaarchar2,
-                    문자열자르기함수 : standardSql-> SUBSTRING(), oracle->SUBSTR()
+                    가변문자 : mysql->varchar, oracle->vaarchar2,
+                    문자열자르기함수 : standardSql->SUBSTRING(), oracle->SUBSTR()
+                    페이징 : mssql->LIMIT, oracle->ROWNUM
                 3. dialect(방언) : SQL 표준을 지기키지 않는 '특정' 데이터베이스만의 고유한 기능 (*DB vendor 마다 다른 기능)
             -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
